@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+button {
+    margin: 10px 0;
+    padding: 5px 10px;
+}
+
+input {
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.loading {
+    opacity: 0.5;
+}
+
+.fade-me-out.htmx-swapping {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.slide-me-out {
+    transition: transform 0.5s ease-out;
+}
+
+.slide-me-out.htmx-swapping {
+    transform: translateX(-100%);
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.grow-shrink {
+    transition: all 0.3s ease;
+}
+
+.grow-shrink.htmx-added {
+    transform: scale(1.5);
+}
+
+.grow-shrink.htmx-swapping {
+    transform: scale(0.5);
+}
+
+.spin {
+    transition: all 0.5s ease;
+}
+
+.spin.htmx-added {
+    transform: rotate(360deg);
+}
