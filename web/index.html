@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eel + htmx + hyperscript Demo</title>
+    <script src="https://unpkg.com/htmx.org@2.0.1"></script>
+    <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+    <script type="text/javascript" src="/eel.js"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .demo-box {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        .throb {
+            animation: throb 1s ease-in-out;
+        }
+        @keyframes throb {
+            50% { background-color: #ccffcc; }
+        }
+        .fade-out.htmx-swapping {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+        .fade-in {
+            opacity: 0;
+        }
+        .fade-in.htmx-settling {
+            opacity: 1;
+            transition: opacity 1s ease-in;
+        }
+        .smooth-swap {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+        .smooth-swap.htmx-swapping {
+            opacity: 1;
+            transition: opacity 1s ease-in;
+        }
+        #pastel-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            transition: background-color 250ms;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            vertical-align: top;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Eel + htmx + hyperscript Demo</h1>
+
+    <table>
+        <tr>
+            <td>
+                <h2>1. Server Time</h2>
+                <div id="server-time">Loading...</div>
+
+                <h2>2. Random Number Generator</h2>
+                <button onclick="generateRandomNumber()">Generate Random Number</button>
+                <div id="random-number">Click the button to generate a number</div>
+
+                <h2>3. Text Reverser</h2>
+                <input type="text" id="text-input" placeholder="Enter text to reverse">
+                <button onclick="reverseText()">Reverse Text</button>
+                <div id="reversed-text"></div>
+
+                <h2>4. Lazy Loading</h2>
+                <div id="lazy-load-container">This content will load when scrolled into view...</div>
+
+                <h2>5. Color Throb</h2>
+                <div class="demo-box">
+                    <button onclick="colorThrob()">Throb</button>
+                    <div id="color-throb-target"></div>
+                </div>
+            </td>
+            <td>
+                <h2>6. Fade Out On Swap</h2>
+                <div class="demo-box">
+                    <button onclick="fadeOut()">Fade Out</button>
+                    <div id="fade-out-target" class="fade-out"></div>
+                </div>
+
+                <h2>7. Fade In On Addition</h2>
+                <div class="demo-box">
+                    <button onclick="fadeIn()">Fade In</button>
+                    <div id="fade-in-target"></div>
+                </div>
+
+                <h2>8. Swap Content</h2>
+                <div class="demo-box">
+                    <button onclick="swapContent()">Swap It</button>
+                    <div id="swap-content-target" class="smooth-swap"></div>
+                </div>
+
+                <h2>9. Pastel Color Button</h2>
+                <div class="demo-box">
+                    <button id="pastel-button" onpointerdown="startPastelChange()" onpointerup="stopPastelChange()" onpointerout="stopPastelChange()">
+                        Press and Hold Me
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
