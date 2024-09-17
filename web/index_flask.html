@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX Demo</title>
+    <script src="https://unpkg.com/htmx.org@1.8.5"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .item {
+            margin: 10px 0;
+        }
+
+        .fade-out {
+            animation: fadeOut 1s forwards;
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>HTMX Demo</h1>
+
+        <!-- Simple click event that swaps the content -->
+        <div class="item">
+            <h3>1. Click Event to Swap Content</h3>
+            <button hx-get="/new-content" hx-swap="outerHTML">Click me to swap content</button>
+        </div>
+
+        <!-- Adding new elements dynamically -->
+        <div class="item">
+            <h3>2. Adding New Elements</h3>
+            <button hx-get="/add-item" hx-target="#item-list" hx-swap="beforeend">Add Item</button>
+            <ul id="item-list">
+                <li>Item 1</li>
+                <li>Item 2</li>
+            </ul>
+        </div>
+
+        <!-- Removing elements -->
+        <div class="item">
+            <h3>3. Remove Element with Animation</h3>
+            <button hx-get="/remove-item" hx-target="#removable-item" hx-swap="outerHTML">Remove This Item</button>
+            <div id="removable-item" class="animate__animated animate__fadeOut">I will disappear!</div>
+        </div>
+
+        <!-- Triggering CSS Transitions -->
+        <div class="item">
+            <h3>4. CSS Transitions on Content Swap</h3>
+            <button hx-get="/transition-content" hx-target="#transition-box" hx-swap="outerHTML" hx-include=".box">Swap Content with Transition</button>
+            <div id="transition-box" class="box">Original Content</div>
+        </div>
+
+        <!-- Requesting a fragment from the server -->
+        <div class="item">
+            <h3>5. Server Fragment Request</h3>
+            <button hx-get="/fragment" hx-target="#fragment-container" hx-swap="outerHTML">Load Fragment</button>
+            <div id="fragment-container">Click the button to load new content from the server.</div>
+        </div>
+
+        <!-- Infinite scrolling / Pagination -->
+        <div class="item">
+            <h3>6. Infinite Scrolling</h3>
+            <div id="infinite-scroll">
+                <div>Page 1 content here</div>
+                <div>Page 2 content here</div>
+                <button hx-get="/load-more" hx-swap="beforeend" hx-trigger="revealed" hx-indicator="#loading">Load More</button>
+            </div>
+            <div id="loading" style="display: none;">Loading...</div>
+        </div>
+    </div>
+
+</body>
+</html>
