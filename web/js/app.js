@@ -22,23 +22,6 @@ function reverseText() {
     });
 }
 
-// Lazy load content
-function lazyLoad() {
-    eel.get_lazy_load_content()(function(content) {
-        document.getElementById('lazy-load-container').innerHTML = content;
-    });
-}
-// Call lazyLoad when the element is in view
-let lazyLoadObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            lazyLoad();
-            lazyLoadObserver.unobserve(entry.target);
-        }
-    });
-});
-lazyLoadObserver.observe(document.getElementById('lazy-load-container'));
-
 // Color throb
 function colorThrob() {
     eel.color_throb()(function(content) {
@@ -84,6 +67,8 @@ function swapContent() {
         }, 1000);
     });
 }
+
+// Pastel color change
 let pastelInterval;
 
 function startPastelChange() {
@@ -100,14 +85,3 @@ function changePastelColor() {
     const hue = Math.random() * 360;
     button.style.backgroundColor = `hsl(${hue}, 100%, 90%)`;
 }
-// Initialize content
-eel.color_throb_initial()(function(content) {
-    document.getElementById('color-throb-target').innerHTML = content;
-});
-eel.fade_out_initial()(function(content) {
-    document.getElementById('fade-out-target').innerHTML = content;
-});
-eel.swap_content_initial()(function(content) {
-    document.getElementById('swap-content-target').innerHTML = content;
-});
-

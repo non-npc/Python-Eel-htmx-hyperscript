@@ -1,51 +1,31 @@
 import eel
-import random
-from datetime import datetime
 
-eel.init('web')
+# Initialize the Eel app
+eel.init('web')  # 'web' folder contains HTML files
+
+# Expose a Python function to be called from JavaScript
+@eel.expose
+def get_new_content():
+    return '<button onclick="htmxSwap()">You swapped the content!</button>'
 
 @eel.expose
-def get_server_time():
-    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+def add_item():
+    return '<li>Newly Added Item</li>'
 
 @eel.expose
-def get_random_number():
-    return str(random.randint(1, 100))
+def remove_item():
+    return ''
 
 @eel.expose
-def reverse_text(text):
-    return text[::-1]
+def transition_content():
+    return '<div id="transition-box" class="box">New Content with Transition!</div>'
 
 @eel.expose
-def get_lazy_load_content():
-    return "This content was lazy-loaded!"
+def load_more():
+    return '''
+        <div>Page 3 content here</div>
+        <div>Page 4 content here</div>
+    '''
 
-@eel.expose
-def color_throb():
-    return f'<div>Throbbed at {get_server_time()}</div>'
-
-@eel.expose
-def color_throb_initial():
-    return '<div>Click the button to see the throb effect</div>'
-
-@eel.expose
-def fade_out():
-    return f'<div>Faded out at {get_server_time()}</div>'
-
-@eel.expose
-def fade_out_initial():
-    return '<div>Click the button to see the fade out effect</div>'
-
-@eel.expose
-def fade_in():
-    return f'<div>Faded in at {get_server_time()}</div>'
-
-@eel.expose
-def swap_content():
-    return f'<div>Swapped at {get_server_time()}</div>'
-
-@eel.expose
-def swap_content_initial():
-    return '<div>Click the button to see the swap effect</div>'
-
+# Start the Eel app
 eel.start('index.html', size=(800, 600))
